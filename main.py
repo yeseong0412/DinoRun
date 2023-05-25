@@ -15,7 +15,7 @@ MENU_STATE = 0
 GAME_STATE = 1
 ENDING_STATE = 2
 
-#메뉴화면
+# 메뉴화면
 def show_menu(screen):
     screen.fill((255, 255, 255))
 
@@ -23,16 +23,20 @@ def show_menu(screen):
     title_text = font.render("DinoRun", True, (0, 0, 0))
     start_text = font.render("Press R to Start", True, (0, 0, 0))
     exit_text = font.render("Press Q to Exit", True, (0, 0, 0))
+    hidden_ending_text = font.render("Press H for Hidden Ending", True, (0, 0, 0))  # 히든 엔딩 텍스트 추가
 
     title_rect = title_text.get_rect(center=(MAX_WIDTH // 2, MAX_HEIGHT // 2 - 50))
     start_rect = start_text.get_rect(center=(MAX_WIDTH // 2, MAX_HEIGHT // 2))
     exit_rect = exit_text.get_rect(center=(MAX_WIDTH // 2, MAX_HEIGHT // 2 + 50))
+    hidden_ending_rect = hidden_ending_text.get_rect(center=(MAX_WIDTH // 2, MAX_HEIGHT // 2 + 100))  # 히든 엔딩 텍스트 위치 설정
 
     screen.blit(title_text, title_rect)
     screen.blit(start_text, start_rect)
     screen.blit(exit_text, exit_rect)
+    screen.blit(hidden_ending_text, hidden_ending_rect)  # 히든 엔딩 텍스트 화면에 표시
 
     pygame.display.update()
+
 
 
 #게임오버 화면
@@ -78,6 +82,17 @@ def show_ending(screen):
     screen.blit(imgEnding3, (screen.get_width() // 2 - imgEnding3.get_width() // 2, screen.get_height() // 2 - imgEnding3.get_height() // 2))
     pygame.display.update()
     pygame.time.wait(1500)
+# 히든 엔딩 화면
+def show_hidden_ending(screen):
+    screen.fill((0, 0, 0))  # 배경을 검은색으로 설정
+    pygame.display.update()
+
+    # imgHiddenEnding = pygame.image.load('images/hidden_ending.png')  # 히든 엔딩 이미지 로드
+    # ending_rect = imgHiddenEnding.get_rect(center=(MAX_WIDTH // 2, MAX_HEIGHT // 2))
+    # screen.blit(imgHiddenEnding, ending_rect)
+
+    pygame.display.update()
+    pygame.time.wait(3000)  # 히든 엔딩 화면을 보여준 후 일정 시간 대기
 
 #트리랑 박았는지 확인
 def check_collision(din_rect, tree_rect):
@@ -108,6 +123,9 @@ def main():
                     elif event.key == pygame.K_q:  # 'Q' 키를 누르면 게임 종료
                         pygame.quit()
                         sys.exit()
+                    elif event.key == pygame.K_h:  # 'H' 키를 누르면 히든 엔딩 화면으로 이동
+                        show_hidden_ending(screen)
+                        state = MENU_STATE
 
         elif state == GAME_STATE:
             # 기초적인 화면 구성
@@ -144,9 +162,10 @@ def main():
                         sys.exit()
 
                     elif event.type == pygame.KEYDOWN:
-                        if is_bottom:
-                            is_go_up = True
-                            is_bottom = False
+                        if event.key == pygame.K_SPACE:  # 스페이스바를 누를 때에만 점프가 가능하도록 함
+                            if is_bottom:
+                                is_go_up = True
+                                is_bottom = False
                         elif event.key == pygame.K_ESCAPE:  # 'ESC' 키를 누르면 메뉴 화면으로 돌아감
                             state = MENU_STATE
                             game_over = True
