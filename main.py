@@ -84,15 +84,46 @@ def show_ending(screen):
     pygame.time.wait(1500)
 # 히든 엔딩 화면
 def show_hidden_ending(screen):
-    screen.fill((0, 0, 0))  # 배경을 검은색으로 설정
+    screen.fill((255, 255, 255))  # 배경을 검은색으로 설정
     pygame.display.update()
 
-    # imgHiddenEnding = pygame.image.load('images/hidden_ending.png')  # 히든 엔딩 이미지 로드
-    # ending_rect = imgHiddenEnding.get_rect(center=(MAX_WIDTH // 2, MAX_HEIGHT // 2))
-    # screen.blit(imgHiddenEnding, ending_rect)
+    imgEnd1 = pygame.image.load('images/end1.png')
+    imgEnd2 = pygame.image.load('images/end2.png')
+    imgEndSad = pygame.image.load('images/endSad.png')
+    imgEnd3 = pygame.image.load('images/end3.png')
+    imgEnd4 = pygame.image.load('images/end4.png')
+    imgEnd5 = pygame.image.load('images/end5.png')
+    imgEnd6 = pygame.image.load('images/end6.png')
+    screen.blit(imgEnd1, (screen.get_width() // 2 - imgEnd1.get_width() // 2, screen.get_height() // 2 - imgEnd1.get_height() // 2))
+    pygame.display.update()
+    pygame.time.wait(1500)
+    screen.fill((255, 255, 255))
+    screen.blit(imgEnd2, (screen.get_width() // 2 - imgEnd2.get_width() // 2, screen.get_height() // 2 - imgEnd2.get_height() // 2))
+    pygame.display.update()
+    pygame.time.wait(1500)
+    screen.fill((255, 255, 255))
+    screen.blit(imgEndSad, (screen.get_width() // 2 - imgEndSad.get_width() // 2, screen.get_height() // 2 - imgEndSad.get_height() // 2))
+    pygame.display.update()
+    pygame.time.wait(1500)
+    screen.fill((255, 255, 255))
+    screen.blit(imgEnd3, (screen.get_width() // 2 - imgEnd3.get_width() // 2, screen.get_height() // 2 - imgEnd3.get_height() // 2))
+    pygame.display.update()
+    pygame.time.wait(1500)
+    screen.fill((255, 255, 255))
+    screen.blit(imgEnd4, (screen.get_width() // 2 - imgEnd4.get_width() // 2, screen.get_height() // 2 - imgEnd4.get_height() // 2))
+    pygame.display.update()
+    pygame.time.wait(1500)
+    screen.fill((255, 255, 255))
+    screen.blit(imgEnd5, (screen.get_width() // 2 - imgEnd5.get_width() // 2, screen.get_height() // 2 - imgEnd5.get_height() // 2))
+    pygame.display.update()
+    pygame.time.wait(1500)
+    screen.fill((255, 255, 255))
+    screen.blit(imgEnd6, (screen.get_width() // 2 - imgEnd6.get_width() // 2, screen.get_height() // 2 - imgEnd6.get_height() // 2))
+    pygame.display.update()
+    pygame.time.wait(1500)
 
     pygame.display.update()
-    pygame.time.wait(3000)  # 히든 엔딩 화면을 보여준 후 일정 시간 대기
+    pygame.time.wait(3000)  # 히든 엔딩 화면을 보여준 후 일정 시간 대가기
 
 #트리랑 박았는지 확인
 def check_collision(din_rect, tree_rect):
