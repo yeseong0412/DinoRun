@@ -1,13 +1,17 @@
-#DinoRun V2 (Made By yeseon0412)
+#DinoRun V1.4 (Made By yeseon0412)
 # 초기 설정
+# 0. 이미지 다운 확인 (중요!)
 # 1. 터미널 열기
 # 2. 'pip install pygame' 터미널 명령어 창에 작성
 # 3. 작동 (게임 즐기기)
 import pygame
 import sys
 import random
+i=0
+cnt=0
 pygame.init()
 pygame.display.set_caption('DinoRun~!')
+print("DinoRun~!")
 MAX_WIDTH = 800
 MAX_HEIGHT = 400
 SCORE_INCREMENT = 10
@@ -15,6 +19,8 @@ SCORE_INCREMENT = 10
 TREE_INTERVAL_MIN = 150
 # 나무가 나타나는 최대 주기 (픽셀 단위)
 TREE_INTERVAL_MAX = 300
+#나무 랜덤값 조정
+TREE=random.randint(10,100)
 # 화면 상태
 MENU_STATE = 0
 GAME_STATE = 1
@@ -41,8 +47,10 @@ def show_menu(screen):
     screen.blit(hidden_ending_text, hidden_ending_rect)
     #화면에 업데이트
     pygame.display.update()
+    pygame.time.wait(1)
 #게임오버 화면
 def show_game_over(screen, score):
+    print("게임오버 출력")
     screen.fill((255, 255, 255))
     #화면 흰색 채우기
     font = pygame.font.Font(None, 36)
@@ -64,6 +72,7 @@ def show_game_over(screen, score):
     screen.fill((255, 255, 255))
 #엔딩화면
 def show_ending(screen):
+    print("엔딩출력")
     #기존 화면 삭제
     screen.fill((255, 255, 255))
     pygame.display.update()
@@ -75,16 +84,20 @@ def show_ending(screen):
     screen.blit(imgEnding1, (screen.get_width() // 2 - imgEnding1.get_width() // 2, screen.get_height() // 2 - imgEnding1.get_height() // 2))
     pygame.display.update()
     pygame.time.wait(1500)
+    print("엔딩1")
     #엔딩2 위치
     screen.blit(imgEnding2, (screen.get_width() // 2 - imgEnding2.get_width() // 2, screen.get_height() // 2 - imgEnding2.get_height() // 2))
     pygame.display.update()
     pygame.time.wait(1500)
+    print("엔딩2")
     #엔딩3 위치
     screen.blit(imgEnding3, (screen.get_width() // 2 - imgEnding3.get_width() // 2, screen.get_height() // 2 - imgEnding3.get_height() // 2))
     pygame.display.update()
     pygame.time.wait(1500)
+    print("엔딩3")
 # 히든 엔딩 화면
 def show_hidden_ending(screen):
+    print("히든엔딩")
     #배경색 설정
     screen.fill((255, 255, 255))
     pygame.display.update()
@@ -101,45 +114,70 @@ def show_hidden_ending(screen):
     pygame.display.update()
     pygame.time.wait(1500)
     screen.fill((255, 255, 255))
+    pygame.time.wait(1)
+    print("히든엔딩1")
     #히든엔딩 2 이미지 표시
     screen.blit(imgEnd2, (screen.get_width() // 2 - imgEnd2.get_width() // 2, screen.get_height() // 2 - imgEnd2.get_height() // 2))
     pygame.display.update()
     pygame.time.wait(1500)
     screen.fill((255, 255, 255))
+    pygame.time.wait(1)
+    print("히든엔딩2")
     #히든엔딩 3 이미지 표시
     screen.blit(imgEndSad, (screen.get_width() // 2 - imgEndSad.get_width() // 2, screen.get_height() // 2 - imgEndSad.get_height() // 2))
     pygame.display.update()
     pygame.time.wait(1500)
     screen.fill((255, 255, 255))
+    pygame.time.wait(1)
+    print("히든엔딩3")
     #히든엔딩 4 이미지 표시
     screen.blit(imgEnd3, (screen.get_width() // 2 - imgEnd3.get_width() // 2, screen.get_height() // 2 - imgEnd3.get_height() // 2))
     pygame.display.update()
     pygame.time.wait(1500)
     screen.fill((255, 255, 255))
+    pygame.time.wait(1)
+    print("히든엔딩4")
     #히든엔딩 5 이미지 표시
     screen.blit(imgEnd4, (screen.get_width() // 2 - imgEnd4.get_width() // 2, screen.get_height() // 2 - imgEnd4.get_height() // 2))
     pygame.display.update()
     pygame.time.wait(1500)
     screen.fill((255, 255, 255))
+    pygame.time.wait(1)
+    print("히든엔딩5")
     #히든엔딩 6 이미지 표시
     screen.blit(imgEnd5, (screen.get_width() // 2 - imgEnd5.get_width() // 2, screen.get_height() // 2 - imgEnd5.get_height() // 2))
     pygame.display.update()
     pygame.time.wait(1500)
     screen.fill((255, 255, 255))
+    pygame.time.wait(1)
+    print("히든엔딩6")
     screen.blit(imgEnd6, (screen.get_width() // 2 - imgEnd6.get_width() // 2, screen.get_height() // 2 - imgEnd6.get_height() // 2))
     pygame.display.update()
     pygame.time.wait(1500)
     #히든엔딩 업데이트
     pygame.display.update()
     pygame.time.wait(3000)
+    #히든 이미지 값 초기화
+    imgEnd1 = pygame.image.load('images/end1.png')
+    imgEnd2 = pygame.image.load('images/end2.png')
+    imgEndSad = pygame.image.load('images/endSad.png')
+    imgEnd3 = pygame.image.load('images/end3.png')
+    imgEnd4 = pygame.image.load('images/end4.png')
+    imgEnd5 = pygame.image.load('images/end5.png')
+    imgEnd6 = pygame.image.load('images/end6.png')
+    pygame.display.update()
+    pygame.time.wait(3000)
+    print("히든엔딩 업데이트")
     # 히든 엔딩 화면을 보여준 후 일정 시간 대가기
 #트리랑 박았는지 확인
 def check_collision(din_rect, tree_rect):
     if din_rect.colliderect(tree_rect):
+        print("트리랑 박음")
         return True
     return False
 #메인 구문
 def main():
+    i=0
     screen = pygame.display.set_mode((MAX_WIDTH, MAX_HEIGHT))
     fps = pygame.time.Clock()
     state = MENU_STATE
@@ -155,21 +193,25 @@ def main():
                 elif event.type == pygame.KEYDOWN:
                     # 'R' 키를 누르면 게임 시작
                     if event.key == pygame.K_r:
+                        print("r입력 받음 [게임종료]")
                         state = GAME_STATE
                     # 'Q' 키를 누르면 게임 종료
                     elif event.key == pygame.K_q:
+                        print("q입력 받음")
                         pygame.quit()
                         sys.exit()
                     # 'H' 키를 누르면 히든 엔딩 화면으로 이동
                     elif event.key == pygame.K_h:
+                        print("h입력 받음")
                         show_hidden_ending(screen)
                         state = MENU_STATE
         #만약 state가 게임 시작 콜을 받았다면?
         elif state == GAME_STATE:
+            jump_ck=1
             # 기초적인 화면 구성 (다이노 이미지 저장)
             imgDin1 = pygame.image.load('images/dino1.png')
             imgDin2 = pygame.image.load('images/dino2.png')
-            #다이노 스팩 설정(기초값, 점프, 위치 등)
+            # 다이노 스팩 설정(기초값, 점프, 위치 등)
             din_height = imgDin1.get_size()[1]
             din_bottom = MAX_HEIGHT - din_height
             din_x = 50
@@ -178,11 +220,17 @@ def main():
             leg_swap = True
             is_bottom = True
             is_go_up = False
-            #나무 이미지 설정
+            # 나무 이미지 설정
             imgTree = pygame.image.load('images/tree.png').convert_alpha()
             tree_height = imgTree.get_size()[1]
             tree_x = MAX_WIDTH
             tree_y = MAX_HEIGHT - tree_height
+            # 구름 이미지 설정
+            imgCloud = pygame.image.load('images/grm.png').convert_alpha()
+            cloud_width = imgCloud.get_size()[0]
+            cloud_height = imgCloud.get_size()[1]
+            cloud_x = MAX_WIDTH
+            cloud_y = random.randint(50, 200)  # 구름의 y 좌표를 랜덤하게 설정
             #스코어 설정 (초가값은 0)
             score = 0
             game_over = False
@@ -198,11 +246,15 @@ def main():
                     elif event.type == pygame.KEYDOWN:
                         # 스페이스바를 누를 때에만 점프가 가능하도록 함 (원래는 아무키나 눌러도 점프됬음)
                         if event.key == pygame.K_SPACE:
+                            print("스페이스 (점프)", jump_ck)
+                            i+=1
+                            jump_ck+=1
                             if is_bottom:
                                 is_go_up = True
                                 is_bottom = False
                         # 'ESC' 키를 누르면 메뉴 화면으로 돌아감
                         elif event.key == pygame.K_ESCAPE:
+                            print("esc 입력받음 -> 메뉴로 이동")
                             state = MENU_STATE
                             game_over = True
                 if is_go_up:
@@ -223,6 +275,14 @@ def main():
                     tree_counter = tree_interval
                 din_rect = pygame.Rect(din_x, din_y, imgDin1.get_width(), imgDin1.get_height())
                 tree_rect = pygame.Rect(tree_x, tree_y, imgTree.get_width(), imgTree.get_height())
+                cloud_x -= 5.0  # 구름이 왼쪽으로 이동하도록 설정
+                if cloud_x <= -cloud_width:
+                    cloud_x = MAX_WIDTH
+                    cloud_y = random.randint(50, 200)  # 새로운 구름의 y 좌표를 랜덤하게 설정
+                cloud_rect = pygame.Rect(cloud_x, cloud_y, cloud_width, cloud_height)
+                if check_collision(din_rect, tree_rect) or score >= 100:
+                    game_over = True
+                screen.blit(imgCloud, (cloud_x, cloud_y))
                 if check_collision(din_rect, tree_rect) or score >= 100:
                     game_over = True
                 screen.blit(imgTree, (tree_x, tree_y))
@@ -240,9 +300,13 @@ def main():
                 fps.tick(30)
             # 스코어가 100이라면 엔딩으로
             if score >= 100:
+                print("조건확인 [100점 이상인가?]")
+                print("점프 수 : " , i)
                 show_ending(screen)
             # 아니라면 게임오버로
             else:
+                print("100점이 아니라 게임오버로 이동")
+                print("점프 수 : ", i)
                 show_game_over(screen, score)
         elif state == ENDING_STATE:
             # 엔딩 상태에 필요한 작업 수행
