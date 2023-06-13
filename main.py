@@ -193,16 +193,16 @@ def main():
                 elif event.type == pygame.KEYDOWN:
                     # 'R' 키를 누르면 게임 시작
                     if event.key == pygame.K_r:
-                        print("r입력 받음 [게임종료]")
+                        print("r입력 받음 [게임시작]")
                         state = GAME_STATE
                     # 'Q' 키를 누르면 게임 종료
                     elif event.key == pygame.K_q:
-                        print("q입력 받음")
+                        print("q입력 받음 [게임종료]")
                         pygame.quit()
                         sys.exit()
                     # 'H' 키를 누르면 히든 엔딩 화면으로 이동
                     elif event.key == pygame.K_h:
-                        print("h입력 받음")
+                        print("h입력 받음 [히든엔딩]")
                         show_hidden_ending(screen)
                         state = MENU_STATE
         #만약 state가 게임 시작 콜을 받았다면?
